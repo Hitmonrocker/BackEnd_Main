@@ -22,28 +22,28 @@ def writeData(info,fileName):# Write Data to file
 	if(file_Exist(fileName)):
 		output=open(fileName,"a")#Append file
 		if not os.stat(fileName).st_size==0:
-			output.write(info['StockSymbol']+"\t\t")
-			output.write(info['LastTradePrice']+"\t\t")
-			output.write(info['LastTradeDateTime']+"\t")
-			output.write(info['LastTradeTime']+"\n")
+			output.write(info['StockSymbol']+",")
+			output.write(info['LastTradePrice']+",")
+			output.write(info['LastTradeDateTime']+",")
+			output.write(info['LastTradeTime']+",\n")
 		else: # Make table for output file
-			output.write("Stock Symbol\t")
-			output.write("LastTradePrice\t")
-			output.write("LastTradeDate\t\t")
-			output.write("LastTradeTime\t\n")
+			output.write("Stock Symbol"+",")
+			output.write("LastTradePrice"+",")
+			output.write("LastTradeDate"+",")
+			output.write("LastTradeTime"+",")
 		output.close()
 	else: # Creates File
 		file=open(fileName,'a+')
 		file.seek(0)
-		file.write("Stock Symbol\t")
-		file.write("LastTradePrice\t")
-		file.write("LastTradeDate\t\t")
-		file.write("LastTradeTime\t\n")
+		file.write("Stock Symbol"+",")
+		file.write("LastTradePrice"+",")
+		file.write("LastTradeDate"+",")
+		file.write("LastTradeTime"+",\n")
 		file.close()
 		writeData(info,fileName)
 
 def main(): #Asks user for stock name any string will do
 	var=input("Enter stock name ")
 	stockData=fetchData(var)
-	writeData(stockData,'stocks.txt')
+	writeData(stockData,'stocks.csv')
 main()
